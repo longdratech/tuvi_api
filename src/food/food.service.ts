@@ -8,7 +8,7 @@ export class FoodService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(body: CreateFoodDto) {
-    return await this.prisma.tableFood.create({ data: body });
+    return await this.prisma.food.create({ data: body });
   }
 
   findAll() {
