@@ -7,21 +7,21 @@ import { FoodService } from './food.service';
 
 @Controller('food')
 export class FoodController {
-  constructor(private readonly tableFoodService: FoodService) {}
+  constructor(private readonly foodService: FoodService) {}
 
   @Post()
-  create(@Body() createTableFoodDto: CreateFoodDto) {
-    return this.tableFoodService.create(createTableFoodDto);
+  create(@Body() body: CreateFoodDto) {
+    return this.foodService.create(body);
   }
 
   @Get()
   findAll() {
-    return this.tableFoodService.findAll();
+    return this.foodService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.tableFoodService.findOne(+id);
+    return this.foodService.findOne(+id);
   }
 
   @Patch(':id')
@@ -29,11 +29,11 @@ export class FoodController {
     @Param('id') id: string,
     @Body() updates: UpdateFoodDto,
   ) {
-    return this.tableFoodService.update(+id, updates);
+    return this.foodService.update(+id, updates);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.tableFoodService.remove(+id);
+    return this.foodService.remove(+id);
   }
 }
