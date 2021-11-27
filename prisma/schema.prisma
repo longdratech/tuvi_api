@@ -9,6 +9,7 @@ datasource db {
 
 model TableFood {
   id    Int    @id @default(autoincrement())
+  num   Int
   foods Food[]
 }
 
