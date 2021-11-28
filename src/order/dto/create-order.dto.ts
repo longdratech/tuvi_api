@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class CreateFoodDto {
+export class CreateOrderDto {
   @IsNotEmpty()
   @IsString()
   readonly name: string;
@@ -14,5 +14,10 @@ export class CreateFoodDto {
   @IsNotEmpty()
   @IsNumber()
   @Type(() => Number)
-  readonly tableFoodId: number;
+  readonly tableOrderId: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @Type(() => Number)
+  readonly menuId: number;
 }

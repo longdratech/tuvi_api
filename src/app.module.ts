@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { FoodModule } from './food/food.module';
 import { PrismaService } from './prisma.service';
-import { TableFoodModule } from './table-food/table-food.module';
+import { OrderModule } from './order/order.module';
+import { TableOrderModule } from './table-order/table-order.module';
+import { MenuModule } from './menu/menu.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
-  imports: [FoodModule, TableFoodModule],
   controllers: [AppController],
   providers: [PrismaService],
+  imports: [OrderModule, TableOrderModule, MenuModule, CategoryModule],
 })
 export class AppModule {}
