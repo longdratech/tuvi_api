@@ -1,10 +1,15 @@
-import { WebSocketGateway, SubscribeMessage, MessageBody, WebSocketServer } from '@nestjs/websockets';
+import {
+  WebSocketGateway,
+  SubscribeMessage,
+  MessageBody,
+  WebSocketServer,
+} from '@nestjs/websockets';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Server } from 'ws';
+import { Server } from 'socket.io';
 
-@WebSocketGateway(8000)
+@WebSocketGateway(8000, { transports: ['websocket'] })
 export class OrderGateway {
   constructor(private readonly orderService: OrderService) {}
 
@@ -22,8 +27,8 @@ export class OrderGateway {
   }
 
   @SubscribeMessage('findOneOrder')
-  findOne(@MessageBody() id: number) {
-    return this.orderService.findOne(id);
+  findOne(@MessageBody() data: any) {
+    return this.server.emit(data);
   }
 
   @SubscribeMessage('updateOrder')

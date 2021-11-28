@@ -19,8 +19,12 @@ export class OrderService {
     return `This action returns all order`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  async findOne(id: number) {
+    try {
+    } catch (err) {
+      console.error(err);
+      throw new BadRequestException(err);
+    }
   }
 
   update(id: number, updateOrderDto: UpdateOrderDto) {
